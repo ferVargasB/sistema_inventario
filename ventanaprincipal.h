@@ -36,6 +36,11 @@ private:
 
     QVector <Producto> listaDeProducto;
 
+    //Propiedades de la ventana Venta
+    QStandardItemModel *nombresSeleccionados;
+    QStandardItemModel *codigosSeleccionados;
+    QStandardItemModel *preciosSeleccionados;
+
 
 
     //funciones relacionadas con la base de datos
@@ -53,6 +58,11 @@ private:
     void mostrarProductosEnTabVenta();
     void cargarListaDeProductos();
     void agregarListaDeProductos();
+
+    //Funciones relacionadas con el proceso de venta
+    void seleccionarProducto(QString nombre);
+    void agregarProductoAlaVenta(Producto producto);
+    void iniciarModelosAlProcesoVenta();
 };
 
 #endif // VENTANAPRINCIPAL_H

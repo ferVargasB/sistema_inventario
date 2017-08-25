@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QDebug>
+#include <QFileDialog>
 
 VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     QMainWindow(parent),
@@ -52,7 +53,9 @@ void VentanaPrincipal::on_pushButtonCrearProducto_clicked()
 void VentanaPrincipal::crearConexionBD()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE","ConexionBD2");
-    db.setDatabaseName("/Users/fernandovargas/Documents/inventario.db");
+    QString nombreBD = QFileDialog::getOpenFileName(this,
+        tr("Abrir Base de datos"), "/home/", tr(""));
+    db.setDatabaseName(nombreBD);
     baseDatos = db;
     if ( db.open() ){
         qDebug() << "BD abierta";
@@ -143,6 +146,27 @@ void VentanaPrincipal::agregarListaDeProductos()
     }
 }
 
+void VentanaPrincipal::seleccionarProducto(QString nombre)
+{
+    for (int i = 0; i < listaDeProducto.size(); i++){
+        if (listaDeProducto[i].getNombre() == nombre){
+            agregarProductoAlaVenta(listaDeProducto[i]);
+        }
+    }
+}
+
+void VentanaPrincipal::agregarProductoAlaVenta(Producto producto)
+{
+
+}
+
+void VentanaPrincipal::iniciarModelosAlProcesoVenta()
+{
+    nombresSeleccionados = new QStandardItemModel(this);
+    codigosSeleccionados = new QStandardItemModel(this);
+    preciosSeleccionados = new QStandardItemModel(this);
+}
+
 void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg1)
 {
     if ( arg1 == "detalle de venta")
@@ -156,5 +180,5 @@ void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg
 
 void VentanaPrincipal::on_comboBoxListaProductos_activated(const QString &arg1)
 {
-
+    seleccionarProducto( arg1 );
 }
