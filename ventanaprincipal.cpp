@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QFileDialog>
+#include <QStandardItem>
 
 VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +16,7 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     ui->setupUi(this);
     crearConexionBD(); //Crear conexion a la bd
     modeloDatos = new QSqlTableModel(this, baseDatos );
+    iniciarModelosAlProcesoVenta();
     mostrarTablaProducto();
     mostrarProductosEnTabVenta();
 }
@@ -157,7 +159,12 @@ void VentanaPrincipal::seleccionarProducto(QString nombre)
 
 void VentanaPrincipal::agregarProductoAlaVenta(Producto producto)
 {
-
+    QStandardItem *itemNombre = new QStandardItem(producto.getNombre());
+    nombresSeleccionados->appendRow(itemNombre);
+    QStandardItem *itemCodigo = new QStandardItem(QString::number(producto.getCodigo()));
+    codigosSeleccionados->appendRow(itemCodigo);
+    QStandardItem *itemPrecio = new QStandardItem(QString::number(producto.getPrecio()));
+    preciosSeleccionados->appendRow(itemPrecio);
 }
 
 void VentanaPrincipal::iniciarModelosAlProcesoVenta()
@@ -165,6 +172,10 @@ void VentanaPrincipal::iniciarModelosAlProcesoVenta()
     nombresSeleccionados = new QStandardItemModel(this);
     codigosSeleccionados = new QStandardItemModel(this);
     preciosSeleccionados = new QStandardItemModel(this);
+
+    ui->listViewNombreDeProductos->setModel(nombresSeleccionados);
+    ui->listViewCodigos->setModel(codigosSeleccionados);
+    ui->listViewPrecio->setModel(preciosSeleccionados);
 }
 
 void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg1)
@@ -177,8 +188,12 @@ void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg
     ui->tableViewConsultas->setModel( modeloDatos );
 }
 
-
 void VentanaPrincipal::on_comboBoxListaProductos_activated(const QString &arg1)
 {
     seleccionarProducto( arg1 );
+}
+
+void VentanaPrincipal::on_pushButton_clicked()
+{
+    QMessageBox::information(this,"Venta","Venta Realizada");
 }

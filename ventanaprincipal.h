@@ -28,6 +28,8 @@ private slots:
 
     void on_comboBoxListaProductos_activated(const QString &arg1);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::VentanaPrincipal *ui;
     QSqlTableModel *modeloDatos;
@@ -61,6 +63,7 @@ private:
 
     //Funciones relacionadas con el proceso de venta
     void seleccionarProducto(QString nombre);
+    void agregarDatosAlaVenta();
     void agregarProductoAlaVenta(Producto producto);
     void iniciarModelosAlProcesoVenta();
 };
