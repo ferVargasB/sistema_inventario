@@ -42,12 +42,12 @@ void VentanaPrincipal::on_pushButtonCrearProducto_clicked()
         producto.setComentario( ui->lineEditComentarios->text() );
 
         if ( !producto.verificarPropiedades() ){
-            QMessageBox::warning(this, "", "Producto creado");
+            QMessageBox::information(this, "", "Producto creado");
             insertarProducto();
             insertarProveedor();
         } else{
 
-            QMessageBox::information(this, "", "Producto creado");
+            QMessageBox::warning(this, "", "Datos incorrectos");
         }
     }
 }
