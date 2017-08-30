@@ -30,13 +30,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         ventanaprincipal.cpp \
-    producto.cpp \
-    standaritemproducto.cpp
+    producto.cpp
 
 HEADERS += \
         ventanaprincipal.h \
-    producto.h \
-    standaritemproducto.h
+    producto.h
 
 FORMS += \
         ventanaprincipal.ui
