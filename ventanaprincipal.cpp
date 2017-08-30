@@ -14,7 +14,7 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
 {
     ui->setupUi(this);
     crearConexionBD(); //Crear conexion a la bd
-    producto = new Producto();
+    producto = new Producto;
     modeloDatos = new QSqlTableModel(this, baseDatos );
     iniciarModelosAlProcesoVenta();
     mostrarTablaProducto();
@@ -40,6 +40,7 @@ void VentanaPrincipal::on_pushButtonCrearProducto_clicked()
         producto->setPrecio( ui->lineEditPrecio->text() );
         producto->setPresentacion( ui->lineEditPresentacion->text());
         producto->setComentario( ui->lineEditComentarios->text() );
+         producto->setStock( ui->lineEditStock->text() );
 
         if ( !producto->verificarPropiedades() ){
             QMessageBox::information(this, "", "Producto creado");

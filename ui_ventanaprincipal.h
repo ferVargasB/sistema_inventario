@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ventanaprincipal.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.9.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -42,11 +41,8 @@ public:
     QGridLayout *gridLayout;
     QTabWidget *tabWidgetVenta;
     QWidget *tabProducto;
-    QGridLayout *gridLayout_2;
     QTableView *tableViewProducto;
-    QFrame *frame;
-    QVBoxLayout *verticalLayout_5;
-    QHBoxLayout *horizontalLayout_2;
+    QWidget *widget;
     QVBoxLayout *verticalLayout_3;
     QLabel *labelNombre;
     QLabel *labelCodigo;
@@ -55,6 +51,8 @@ public:
     QLabel *labelPrecio;
     QLabel *labelPresentacion;
     QLabel *labelComentario;
+    QLabel *labelStock;
+    QWidget *widget1;
     QVBoxLayout *verticalLayout_4;
     QLineEdit *lineEditNombre;
     QLineEdit *lineEditCodigo;
@@ -63,6 +61,7 @@ public:
     QLineEdit *lineEditPrecio;
     QLineEdit *lineEditPresentacion;
     QLineEdit *lineEditComentarios;
+    QLineEdit *lineEditStock;
     QPushButton *pushButtonCrearProducto;
     QWidget *tabConsultar;
     QGridLayout *gridLayout_3;
@@ -72,11 +71,13 @@ public:
     QComboBox *comboBoxTablasDisponibles;
     QTableView *tableViewConsultas;
     QWidget *tabVenta;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_5;
     QLabel *labelSeleccioneProducto;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *horizontalSpacer_3;
     QComboBox *comboBoxListaProductos;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_8;
     QTableView *tableViewProductosParaVender;
     QHBoxLayout *horizontalLayout_4;
@@ -105,7 +106,7 @@ public:
     {
         if (VentanaPrincipal->objectName().isEmpty())
             VentanaPrincipal->setObjectName(QStringLiteral("VentanaPrincipal"));
-        VentanaPrincipal->resize(979, 484);
+        VentanaPrincipal->resize(979, 502);
         centralWidget = new QWidget(VentanaPrincipal);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -116,126 +117,117 @@ public:
         tabWidgetVenta->setObjectName(QStringLiteral("tabWidgetVenta"));
         tabProducto = new QWidget();
         tabProducto->setObjectName(QStringLiteral("tabProducto"));
-        gridLayout_2 = new QGridLayout(tabProducto);
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         tableViewProducto = new QTableView(tabProducto);
         tableViewProducto->setObjectName(QStringLiteral("tableViewProducto"));
+        tableViewProducto->setGeometry(QRect(20, 299, 909, 80));
         tableViewProducto->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-        gridLayout_2->addWidget(tableViewProducto, 1, 0, 1, 2);
-
-        frame = new QFrame(tabProducto);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        verticalLayout_5 = new QVBoxLayout(frame);
-        verticalLayout_5->setSpacing(6);
-        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        verticalLayout_3 = new QVBoxLayout();
+        widget = new QWidget(tabProducto);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(150, 50, 85, 209));
+        verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        labelNombre = new QLabel(frame);
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        labelNombre = new QLabel(widget);
         labelNombre->setObjectName(QStringLiteral("labelNombre"));
 
         verticalLayout_3->addWidget(labelNombre);
 
-        labelCodigo = new QLabel(frame);
+        labelCodigo = new QLabel(widget);
         labelCodigo->setObjectName(QStringLiteral("labelCodigo"));
 
         verticalLayout_3->addWidget(labelCodigo);
 
-        labelMarca = new QLabel(frame);
+        labelMarca = new QLabel(widget);
         labelMarca->setObjectName(QStringLiteral("labelMarca"));
 
         verticalLayout_3->addWidget(labelMarca);
 
-        labelProveedor = new QLabel(frame);
+        labelProveedor = new QLabel(widget);
         labelProveedor->setObjectName(QStringLiteral("labelProveedor"));
 
         verticalLayout_3->addWidget(labelProveedor);
 
-        labelPrecio = new QLabel(frame);
+        labelPrecio = new QLabel(widget);
         labelPrecio->setObjectName(QStringLiteral("labelPrecio"));
 
         verticalLayout_3->addWidget(labelPrecio);
 
-        labelPresentacion = new QLabel(frame);
+        labelPresentacion = new QLabel(widget);
         labelPresentacion->setObjectName(QStringLiteral("labelPresentacion"));
 
         verticalLayout_3->addWidget(labelPresentacion);
 
-        labelComentario = new QLabel(frame);
+        labelComentario = new QLabel(widget);
         labelComentario->setObjectName(QStringLiteral("labelComentario"));
 
         verticalLayout_3->addWidget(labelComentario);
 
+        labelStock = new QLabel(widget);
+        labelStock->setObjectName(QStringLiteral("labelStock"));
 
-        horizontalLayout_2->addLayout(verticalLayout_3);
+        verticalLayout_3->addWidget(labelStock);
 
-        verticalLayout_4 = new QVBoxLayout();
+        widget1 = new QWidget(tabProducto);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        widget1->setGeometry(QRect(270, 30, 222, 262));
+        verticalLayout_4 = new QVBoxLayout(widget1);
         verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        lineEditNombre = new QLineEdit(frame);
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        lineEditNombre = new QLineEdit(widget1);
         lineEditNombre->setObjectName(QStringLiteral("lineEditNombre"));
         lineEditNombre->setInputMethodHints(Qt::ImhPreferLowercase);
 
         verticalLayout_4->addWidget(lineEditNombre);
 
-        lineEditCodigo = new QLineEdit(frame);
+        lineEditCodigo = new QLineEdit(widget1);
         lineEditCodigo->setObjectName(QStringLiteral("lineEditCodigo"));
         lineEditCodigo->setInputMethodHints(Qt::ImhPreferNumbers);
 
         verticalLayout_4->addWidget(lineEditCodigo);
 
-        lineEditMarca = new QLineEdit(frame);
+        lineEditMarca = new QLineEdit(widget1);
         lineEditMarca->setObjectName(QStringLiteral("lineEditMarca"));
         lineEditMarca->setInputMethodHints(Qt::ImhPreferLowercase);
 
         verticalLayout_4->addWidget(lineEditMarca);
 
-        lineEditProveedor = new QLineEdit(frame);
+        lineEditProveedor = new QLineEdit(widget1);
         lineEditProveedor->setObjectName(QStringLiteral("lineEditProveedor"));
         lineEditProveedor->setInputMethodHints(Qt::ImhPreferLowercase);
 
         verticalLayout_4->addWidget(lineEditProveedor);
 
-        lineEditPrecio = new QLineEdit(frame);
+        lineEditPrecio = new QLineEdit(widget1);
         lineEditPrecio->setObjectName(QStringLiteral("lineEditPrecio"));
         lineEditPrecio->setInputMethodHints(Qt::ImhDigitsOnly);
 
         verticalLayout_4->addWidget(lineEditPrecio);
 
-        lineEditPresentacion = new QLineEdit(frame);
+        lineEditPresentacion = new QLineEdit(widget1);
         lineEditPresentacion->setObjectName(QStringLiteral("lineEditPresentacion"));
         lineEditPresentacion->setInputMethodHints(Qt::ImhDigitsOnly);
 
         verticalLayout_4->addWidget(lineEditPresentacion);
 
-        lineEditComentarios = new QLineEdit(frame);
+        lineEditComentarios = new QLineEdit(widget1);
         lineEditComentarios->setObjectName(QStringLiteral("lineEditComentarios"));
         lineEditComentarios->setInputMethodHints(Qt::ImhLowercaseOnly);
 
         verticalLayout_4->addWidget(lineEditComentarios);
 
+        lineEditStock = new QLineEdit(widget1);
+        lineEditStock->setObjectName(QStringLiteral("lineEditStock"));
+        lineEditStock->setInputMethodHints(Qt::ImhDigitsOnly);
 
-        horizontalLayout_2->addLayout(verticalLayout_4);
+        verticalLayout_4->addWidget(lineEditStock);
 
-
-        verticalLayout_5->addLayout(horizontalLayout_2);
-
-        pushButtonCrearProducto = new QPushButton(frame);
+        pushButtonCrearProducto = new QPushButton(tabProducto);
         pushButtonCrearProducto->setObjectName(QStringLiteral("pushButtonCrearProducto"));
-
-        verticalLayout_5->addWidget(pushButtonCrearProducto);
-
-
-        gridLayout_2->addWidget(frame, 0, 1, 1, 1);
-
+        pushButtonCrearProducto->setGeometry(QRect(10, 150, 135, 32));
         tabWidgetVenta->addTab(tabProducto, QString());
         tabConsultar = new QWidget();
         tabConsultar->setObjectName(QStringLiteral("tabConsultar"));
@@ -271,33 +263,41 @@ public:
         tabWidgetVenta->addTab(tabConsultar, QString());
         tabVenta = new QWidget();
         tabVenta->setObjectName(QStringLiteral("tabVenta"));
-        widget = new QWidget(tabVenta);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 305, 22));
-        horizontalLayout_5 = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(tabVenta);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 417, 26));
+        horizontalLayout_5 = new QHBoxLayout(layoutWidget);
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        labelSeleccioneProducto = new QLabel(widget);
+        labelSeleccioneProducto = new QLabel(layoutWidget);
         labelSeleccioneProducto->setObjectName(QStringLiteral("labelSeleccioneProducto"));
 
         horizontalLayout_5->addWidget(labelSeleccioneProducto);
 
-        comboBoxListaProductos = new QComboBox(widget);
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_4);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_3);
+
+        comboBoxListaProductos = new QComboBox(layoutWidget);
         comboBoxListaProductos->setObjectName(QStringLiteral("comboBoxListaProductos"));
 
         horizontalLayout_5->addWidget(comboBoxListaProductos);
 
-        widget1 = new QWidget(tabVenta);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 38, 935, 310));
-        verticalLayout_8 = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(tabVenta);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 38, 935, 310));
+        verticalLayout_8 = new QVBoxLayout(layoutWidget1);
         verticalLayout_8->setSpacing(6);
         verticalLayout_8->setContentsMargins(11, 11, 11, 11);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
-        tableViewProductosParaVender = new QTableView(widget1);
+        tableViewProductosParaVender = new QTableView(layoutWidget1);
         tableViewProductosParaVender->setObjectName(QStringLiteral("tableViewProductosParaVender"));
 
         verticalLayout_8->addWidget(tableViewProductosParaVender);
@@ -311,13 +311,13 @@ public:
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        labelProducto = new QLabel(widget1);
+        labelProducto = new QLabel(layoutWidget1);
         labelProducto->setObjectName(QStringLiteral("labelProducto"));
         labelProducto->setAlignment(Qt::AlignCenter);
 
         verticalLayout_6->addWidget(labelProducto);
 
-        listViewNombreDeProductos = new QListView(widget1);
+        listViewNombreDeProductos = new QListView(layoutWidget1);
         listViewNombreDeProductos->setObjectName(QStringLiteral("listViewNombreDeProductos"));
 
         verticalLayout_6->addWidget(listViewNombreDeProductos);
@@ -328,13 +328,13 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        Codigo = new QLabel(widget1);
+        Codigo = new QLabel(layoutWidget1);
         Codigo->setObjectName(QStringLiteral("Codigo"));
         Codigo->setAlignment(Qt::AlignCenter);
 
         verticalLayout_2->addWidget(Codigo);
 
-        listViewCodigos = new QListView(widget1);
+        listViewCodigos = new QListView(layoutWidget1);
         listViewCodigos->setObjectName(QStringLiteral("listViewCodigos"));
 
         verticalLayout_2->addWidget(listViewCodigos);
@@ -345,13 +345,13 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        Precio = new QLabel(widget1);
+        Precio = new QLabel(layoutWidget1);
         Precio->setObjectName(QStringLiteral("Precio"));
         Precio->setAlignment(Qt::AlignCenter);
 
         verticalLayout->addWidget(Precio);
 
-        listViewPrecio = new QListView(widget1);
+        listViewPrecio = new QListView(layoutWidget1);
         listViewPrecio->setObjectName(QStringLiteral("listViewPrecio"));
 
         verticalLayout->addWidget(listViewPrecio);
@@ -365,12 +365,12 @@ public:
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        label_2 = new QLabel(widget1);
+        label_2 = new QLabel(layoutWidget1);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         verticalLayout_7->addWidget(label_2);
 
-        spinBox = new QSpinBox(widget1);
+        spinBox = new QSpinBox(layoutWidget1);
         spinBox->setObjectName(QStringLiteral("spinBox"));
 
         verticalLayout_7->addWidget(spinBox);
@@ -388,7 +388,7 @@ public:
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        pushButton = new QPushButton(widget1);
+        pushButton = new QPushButton(layoutWidget1);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         horizontalLayout_6->addWidget(pushButton);
@@ -407,7 +407,7 @@ public:
         VentanaPrincipal->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(VentanaPrincipal);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 979, 21));
+        menuBar->setGeometry(QRect(0, 0, 979, 22));
         VentanaPrincipal->setMenuBar(menuBar);
         mainToolBar = new QToolBar(VentanaPrincipal);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -418,7 +418,7 @@ public:
 
         retranslateUi(VentanaPrincipal);
 
-        tabWidgetVenta->setCurrentIndex(2);
+        tabWidgetVenta->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(VentanaPrincipal);
@@ -426,30 +426,31 @@ public:
 
     void retranslateUi(QMainWindow *VentanaPrincipal)
     {
-        VentanaPrincipal->setWindowTitle(QApplication::translate("VentanaPrincipal", "VentanaPrincipal", 0));
-        labelNombre->setText(QApplication::translate("VentanaPrincipal", "Nombre:", 0));
-        labelCodigo->setText(QApplication::translate("VentanaPrincipal", "Codigo:", 0));
-        labelMarca->setText(QApplication::translate("VentanaPrincipal", "Marca:", 0));
-        labelProveedor->setText(QApplication::translate("VentanaPrincipal", "Proveedor:", 0));
-        labelPrecio->setText(QApplication::translate("VentanaPrincipal", "Precio:", 0));
-        labelPresentacion->setText(QApplication::translate("VentanaPrincipal", "Presentaci\303\263n:", 0));
-        labelComentario->setText(QApplication::translate("VentanaPrincipal", "Comentario:", 0));
-        pushButtonCrearProducto->setText(QApplication::translate("VentanaPrincipal", "Crear Producto", 0));
-        tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabProducto), QApplication::translate("VentanaPrincipal", "Producto", 0));
-        label->setText(QApplication::translate("VentanaPrincipal", "Seleccione la tabla para consultar y/o modificar", 0));
+        VentanaPrincipal->setWindowTitle(QApplication::translate("VentanaPrincipal", "VentanaPrincipal", Q_NULLPTR));
+        labelNombre->setText(QApplication::translate("VentanaPrincipal", "Nombre:", Q_NULLPTR));
+        labelCodigo->setText(QApplication::translate("VentanaPrincipal", "Codigo:", Q_NULLPTR));
+        labelMarca->setText(QApplication::translate("VentanaPrincipal", "Marca:", Q_NULLPTR));
+        labelProveedor->setText(QApplication::translate("VentanaPrincipal", "Proveedor:", Q_NULLPTR));
+        labelPrecio->setText(QApplication::translate("VentanaPrincipal", "Precio:", Q_NULLPTR));
+        labelPresentacion->setText(QApplication::translate("VentanaPrincipal", "Presentaci\303\263n:", Q_NULLPTR));
+        labelComentario->setText(QApplication::translate("VentanaPrincipal", "Comentario:", Q_NULLPTR));
+        labelStock->setText(QApplication::translate("VentanaPrincipal", "Stock Inicial", Q_NULLPTR));
+        pushButtonCrearProducto->setText(QApplication::translate("VentanaPrincipal", "Crear Producto", Q_NULLPTR));
+        tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabProducto), QApplication::translate("VentanaPrincipal", "Producto", Q_NULLPTR));
+        label->setText(QApplication::translate("VentanaPrincipal", "Seleccione la tabla para consultar y/o modificar", Q_NULLPTR));
         comboBoxTablasDisponibles->clear();
         comboBoxTablasDisponibles->insertItems(0, QStringList()
-         << QApplication::translate("VentanaPrincipal", "producto", 0)
-         << QApplication::translate("VentanaPrincipal", "detalle de venta", 0)
+         << QApplication::translate("VentanaPrincipal", "producto", Q_NULLPTR)
+         << QApplication::translate("VentanaPrincipal", "detalle de venta", Q_NULLPTR)
         );
-        tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabConsultar), QApplication::translate("VentanaPrincipal", "Consultas", 0));
-        labelSeleccioneProducto->setText(QApplication::translate("VentanaPrincipal", "Seleccione un producto para agregar a la venta", 0));
-        labelProducto->setText(QApplication::translate("VentanaPrincipal", "Nombre", 0));
-        Codigo->setText(QApplication::translate("VentanaPrincipal", "Codigo", 0));
-        Precio->setText(QApplication::translate("VentanaPrincipal", "Precio", 0));
-        label_2->setText(QApplication::translate("VentanaPrincipal", "Cantidad", 0));
-        pushButton->setText(QApplication::translate("VentanaPrincipal", "Realizar Venta", 0));
-        tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabVenta), QApplication::translate("VentanaPrincipal", "Venta", 0));
+        tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabConsultar), QApplication::translate("VentanaPrincipal", "Consultas", Q_NULLPTR));
+        labelSeleccioneProducto->setText(QApplication::translate("VentanaPrincipal", "Seleccione un producto para agregar a la venta", Q_NULLPTR));
+        labelProducto->setText(QApplication::translate("VentanaPrincipal", "Nombre", Q_NULLPTR));
+        Codigo->setText(QApplication::translate("VentanaPrincipal", "Codigo", Q_NULLPTR));
+        Precio->setText(QApplication::translate("VentanaPrincipal", "Precio", Q_NULLPTR));
+        label_2->setText(QApplication::translate("VentanaPrincipal", "Cantidad", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("VentanaPrincipal", "Realizar Venta", Q_NULLPTR));
+        tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabVenta), QApplication::translate("VentanaPrincipal", "Venta", Q_NULLPTR));
     } // retranslateUi
 
 };
