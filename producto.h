@@ -7,7 +7,13 @@
 class Producto
 {
 public:
-    Producto();
+    explicit Producto(QString nombreP = "", int codigoP = 0, QString marcaP = "", QString proveedorP = "",
+                      double precioP = 0.0, double presentacionP = 0.0, QString comentarioP = "",
+                      int stockP = 0);
+
+    void establecerProducto(QString nombreP, QString codigoP, QString marcaP, QString proveedorP,
+                            QString precioP, QString presentacionP, QString comentarioP, QString stockP);
+
     QString getNombre() const;
     void setNombre(const QString &value);
 
@@ -29,7 +35,11 @@ public:
     QString getComentario() const;
     void setComentario(const QString &value);
 
+    void reestablecerPropiedades();
     bool verificarPropiedades();
+
+    int getStock() const;
+    void setStock(QString value);
 
 private:
     QString nombre;
@@ -39,6 +49,7 @@ private:
     double precio;
     double presentacion;
     QString comentario;
+    int stock;
     QVector <int> propiedadesValidas;
 
 };

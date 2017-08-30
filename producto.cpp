@@ -2,10 +2,24 @@
 
 #include <QtCore>
 
-Producto::Producto()
+Producto::Producto(QString nombreP, int codigoP, QString marcaP, QString proveedorP, double precioP, double presentacionP, QString comentarioP, int stockP)
 {
-    propiedadesValidas.resize(7);
+    propiedadesValidas.resize(8);
     propiedadesValidas.fill(1);
+    establecerProducto( nombreP, QString::number(codigoP), marcaP, proveedorP, QString::number(precioP), QString::number(presentacionP), comentarioP, QString::number(stockP));
+}
+
+void Producto::establecerProducto(QString nombreP, QString codigoP, QString marcaP, QString proveedorP,
+                                  QString precioP, QString presentacionP, QString comentarioP, QString stockP)
+{
+    setNombre( nombreP);
+    setCodigo( codigoP );
+    setMarca( marcaP );
+    setProveedor( proveedorP );
+    setPrecio( precioP );
+    setPresentacion( presentacionP );
+    setComentario( comentarioP );
+    setStock( stockP );
 }
 
 QString Producto::getNombre() const
@@ -136,8 +150,31 @@ void Producto::setComentario(const QString &value)
 
 }
 
+void Producto::reestablecerPropiedades()
+{
+    propiedadesValidas.fill(1);
+}
+
 bool Producto::verificarPropiedades()
 {
     bool propiedadesVerificadas = propiedadesValidas.contains(1);
     return propiedadesVerificadas;
+}
+
+int Producto::getStock() const
+{
+    return stock;
+}
+
+void Producto::setStock(QString value)
+{
+    bool ok = true;
+    if ( !value.isEmpty() && !value.contains(QRegularExpression("([a-z]|[A-Z])"))){
+        if ( value.toInt(&ok) <= 100000 && value.toInt(&ok) >= 0){
+            codigo = value.toInt(&ok);
+            propiedadesValidas[7] = 0;
+        } else
+            propiedadesValidas[7] = 1;
+    } else
+        propiedadesValidas[7] = 1;
 }

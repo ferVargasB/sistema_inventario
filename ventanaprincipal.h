@@ -34,7 +34,7 @@ private:
     Ui::VentanaPrincipal *ui;
     QSqlTableModel *modeloDatos;
     QSqlDatabase baseDatos;
-    Producto producto;
+    Producto *producto;
 
     QVector <Producto> listaDeProducto;
 

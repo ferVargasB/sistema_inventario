@@ -1,7 +1,6 @@
 #include "ventanaprincipal.h"
 #include "ui_ventanaprincipal.h"
 #include "producto.h"
-#include "standaritemproducto.h"
 
 #include <QMessageBox>
 #include <QSqlQuery>
@@ -15,6 +14,7 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
 {
     ui->setupUi(this);
     crearConexionBD(); //Crear conexion a la bd
+    producto = new Producto();
     modeloDatos = new QSqlTableModel(this, baseDatos );
     iniciarModelosAlProcesoVenta();
     mostrarTablaProducto();
@@ -33,15 +33,15 @@ void VentanaPrincipal::on_pushButtonCrearProducto_clicked()
     if ( !baseDatos.isOpen() )
         qDebug() << "No hay conexion a la base de datos";
     else{
-        producto.setNombre( ui->lineEditNombre->text() );
-        producto.setCodigo( ui->lineEditCodigo->text() );
-        producto.setMarca( ui->lineEditMarca->text() );
-        producto.setProveedor( ui->lineEditProveedor->text() );
-        producto.setPrecio( ui->lineEditPrecio->text() );
-        producto.setPresentacion( ui->lineEditPresentacion->text());
-        producto.setComentario( ui->lineEditComentarios->text() );
+        producto->setNombre( ui->lineEditNombre->text() );
+        producto->setCodigo( ui->lineEditCodigo->text() );
+        producto->setMarca( ui->lineEditMarca->text() );
+        producto->setProveedor( ui->lineEditProveedor->text() );
+        producto->setPrecio( ui->lineEditPrecio->text() );
+        producto->setPresentacion( ui->lineEditPresentacion->text());
+        producto->setComentario( ui->lineEditComentarios->text() );
 
-        if ( !producto.verificarPropiedades() ){
+        if ( !producto->verificarPropiedades() ){
             QMessageBox::information(this, "", "Producto creado");
             insertarProducto();
             insertarProveedor();
@@ -80,13 +80,13 @@ void VentanaPrincipal::insertarProducto()
    query.prepare("INSERT INTO producto (nombre, codigo, marca, proveedor, precio, presentacion, comentarios)"
                  "VALUES (:nombre, :codigo, :marca, :proveedor, :precio, :presentacion, :comentarios)");
 
-   query.bindValue(0, producto.getNombre());
-   query.bindValue(1, producto.getCodigo());
-   query.bindValue(2, producto.getMarca() );
-   query.bindValue(3, producto.getProveedor() );
-   query.bindValue(4, producto.getPrecio() );
-   query.bindValue(5, producto.getPresentacion() );
-   query.bindValue(6, producto.getComentario() );
+   query.bindValue(0, producto->getNombre());
+   query.bindValue(1, producto->getCodigo());
+   query.bindValue(2, producto->getMarca() );
+   query.bindValue(3, producto->getProveedor() );
+   query.bindValue(4, producto->getPrecio() );
+   query.bindValue(5, producto->getPresentacion() );
+   query.bindValue(6, producto->getComentario() );
 
    if ( query.exec() )
        qDebug() << "Query exitosa";
@@ -99,7 +99,7 @@ void VentanaPrincipal::insertarProveedor()
     QSqlQuery query(baseDatos);
     query.prepare("INSERT INTO proveedor(nombre) "
                   "VALUES(:nombre)");
-    query.bindValue(":nombre", producto.getProveedor());
+    query.bindValue(":nombre", producto->getProveedor());
 
 
     if ( baseDatos.isOpen()){
