@@ -38,11 +38,13 @@ class Ui_VentanaPrincipal
 {
 public:
     QWidget *centralWidget;
-    QGridLayout *gridLayout;
+    QGridLayout *gridLayout_2;
     QTabWidget *tabWidgetVenta;
     QWidget *tabProducto;
-    QTableView *tableViewProducto;
-    QWidget *widget;
+    QGridLayout *gridLayout;
+    QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer_7;
     QVBoxLayout *verticalLayout_3;
     QLabel *labelNombre;
     QLabel *labelCodigo;
@@ -52,7 +54,6 @@ public:
     QLabel *labelPresentacion;
     QLabel *labelComentario;
     QLabel *labelStock;
-    QWidget *widget1;
     QVBoxLayout *verticalLayout_4;
     QLineEdit *lineEditNombre;
     QLineEdit *lineEditCodigo;
@@ -62,7 +63,12 @@ public:
     QLineEdit *lineEditPresentacion;
     QLineEdit *lineEditComentarios;
     QLineEdit *lineEditStock;
+    QSpacerItem *horizontalSpacer_8;
+    QHBoxLayout *horizontalLayout_7;
+    QSpacerItem *horizontalSpacer_5;
     QPushButton *pushButtonCrearProducto;
+    QSpacerItem *horizontalSpacer_6;
+    QTableView *tableViewProducto;
     QWidget *tabConsultar;
     QGridLayout *gridLayout_3;
     QHBoxLayout *horizontalLayout_3;
@@ -109,125 +115,163 @@ public:
         VentanaPrincipal->resize(979, 502);
         centralWidget = new QWidget(VentanaPrincipal);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayout = new QGridLayout(centralWidget);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout_2 = new QGridLayout(centralWidget);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         tabWidgetVenta = new QTabWidget(centralWidget);
         tabWidgetVenta->setObjectName(QStringLiteral("tabWidgetVenta"));
         tabProducto = new QWidget();
         tabProducto->setObjectName(QStringLiteral("tabProducto"));
-        tableViewProducto = new QTableView(tabProducto);
-        tableViewProducto->setObjectName(QStringLiteral("tableViewProducto"));
-        tableViewProducto->setGeometry(QRect(20, 299, 909, 80));
-        tableViewProducto->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        widget = new QWidget(tabProducto);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(150, 50, 85, 209));
-        verticalLayout_3 = new QVBoxLayout(widget);
+        gridLayout = new QGridLayout(tabProducto);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_7);
+
+        verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        labelNombre = new QLabel(widget);
+        labelNombre = new QLabel(tabProducto);
         labelNombre->setObjectName(QStringLiteral("labelNombre"));
 
         verticalLayout_3->addWidget(labelNombre);
 
-        labelCodigo = new QLabel(widget);
+        labelCodigo = new QLabel(tabProducto);
         labelCodigo->setObjectName(QStringLiteral("labelCodigo"));
 
         verticalLayout_3->addWidget(labelCodigo);
 
-        labelMarca = new QLabel(widget);
+        labelMarca = new QLabel(tabProducto);
         labelMarca->setObjectName(QStringLiteral("labelMarca"));
 
         verticalLayout_3->addWidget(labelMarca);
 
-        labelProveedor = new QLabel(widget);
+        labelProveedor = new QLabel(tabProducto);
         labelProveedor->setObjectName(QStringLiteral("labelProveedor"));
 
         verticalLayout_3->addWidget(labelProveedor);
 
-        labelPrecio = new QLabel(widget);
+        labelPrecio = new QLabel(tabProducto);
         labelPrecio->setObjectName(QStringLiteral("labelPrecio"));
 
         verticalLayout_3->addWidget(labelPrecio);
 
-        labelPresentacion = new QLabel(widget);
+        labelPresentacion = new QLabel(tabProducto);
         labelPresentacion->setObjectName(QStringLiteral("labelPresentacion"));
 
         verticalLayout_3->addWidget(labelPresentacion);
 
-        labelComentario = new QLabel(widget);
+        labelComentario = new QLabel(tabProducto);
         labelComentario->setObjectName(QStringLiteral("labelComentario"));
 
         verticalLayout_3->addWidget(labelComentario);
 
-        labelStock = new QLabel(widget);
+        labelStock = new QLabel(tabProducto);
         labelStock->setObjectName(QStringLiteral("labelStock"));
 
         verticalLayout_3->addWidget(labelStock);
 
-        widget1 = new QWidget(tabProducto);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(270, 30, 222, 262));
-        verticalLayout_4 = new QVBoxLayout(widget1);
+
+        horizontalLayout_2->addLayout(verticalLayout_3);
+
+        verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        lineEditNombre = new QLineEdit(widget1);
+        lineEditNombre = new QLineEdit(tabProducto);
         lineEditNombre->setObjectName(QStringLiteral("lineEditNombre"));
         lineEditNombre->setInputMethodHints(Qt::ImhPreferLowercase);
 
         verticalLayout_4->addWidget(lineEditNombre);
 
-        lineEditCodigo = new QLineEdit(widget1);
+        lineEditCodigo = new QLineEdit(tabProducto);
         lineEditCodigo->setObjectName(QStringLiteral("lineEditCodigo"));
         lineEditCodigo->setInputMethodHints(Qt::ImhPreferNumbers);
 
         verticalLayout_4->addWidget(lineEditCodigo);
 
-        lineEditMarca = new QLineEdit(widget1);
+        lineEditMarca = new QLineEdit(tabProducto);
         lineEditMarca->setObjectName(QStringLiteral("lineEditMarca"));
         lineEditMarca->setInputMethodHints(Qt::ImhPreferLowercase);
 
         verticalLayout_4->addWidget(lineEditMarca);
 
-        lineEditProveedor = new QLineEdit(widget1);
+        lineEditProveedor = new QLineEdit(tabProducto);
         lineEditProveedor->setObjectName(QStringLiteral("lineEditProveedor"));
         lineEditProveedor->setInputMethodHints(Qt::ImhPreferLowercase);
 
         verticalLayout_4->addWidget(lineEditProveedor);
 
-        lineEditPrecio = new QLineEdit(widget1);
+        lineEditPrecio = new QLineEdit(tabProducto);
         lineEditPrecio->setObjectName(QStringLiteral("lineEditPrecio"));
         lineEditPrecio->setInputMethodHints(Qt::ImhDigitsOnly);
 
         verticalLayout_4->addWidget(lineEditPrecio);
 
-        lineEditPresentacion = new QLineEdit(widget1);
+        lineEditPresentacion = new QLineEdit(tabProducto);
         lineEditPresentacion->setObjectName(QStringLiteral("lineEditPresentacion"));
         lineEditPresentacion->setInputMethodHints(Qt::ImhDigitsOnly);
 
         verticalLayout_4->addWidget(lineEditPresentacion);
 
-        lineEditComentarios = new QLineEdit(widget1);
+        lineEditComentarios = new QLineEdit(tabProducto);
         lineEditComentarios->setObjectName(QStringLiteral("lineEditComentarios"));
         lineEditComentarios->setInputMethodHints(Qt::ImhLowercaseOnly);
 
         verticalLayout_4->addWidget(lineEditComentarios);
 
-        lineEditStock = new QLineEdit(widget1);
+        lineEditStock = new QLineEdit(tabProducto);
         lineEditStock->setObjectName(QStringLiteral("lineEditStock"));
         lineEditStock->setInputMethodHints(Qt::ImhDigitsOnly);
 
         verticalLayout_4->addWidget(lineEditStock);
 
+
+        horizontalLayout_2->addLayout(verticalLayout_4);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_8);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_2);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_5);
+
         pushButtonCrearProducto = new QPushButton(tabProducto);
         pushButtonCrearProducto->setObjectName(QStringLiteral("pushButtonCrearProducto"));
-        pushButtonCrearProducto->setGeometry(QRect(10, 150, 135, 32));
+
+        horizontalLayout_7->addWidget(pushButtonCrearProducto);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_6);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_7);
+
+
+        gridLayout->addLayout(verticalLayout_5, 0, 0, 1, 1);
+
+        tableViewProducto = new QTableView(tabProducto);
+        tableViewProducto->setObjectName(QStringLiteral("tableViewProducto"));
+        tableViewProducto->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        gridLayout->addWidget(tableViewProducto, 1, 0, 1, 1);
+
         tabWidgetVenta->addTab(tabProducto, QString());
         tabConsultar = new QWidget();
         tabConsultar->setObjectName(QStringLiteral("tabConsultar"));
@@ -402,7 +446,7 @@ public:
 
         tabWidgetVenta->addTab(tabVenta, QString());
 
-        gridLayout->addWidget(tabWidgetVenta, 1, 0, 1, 1);
+        gridLayout_2->addWidget(tabWidgetVenta, 0, 0, 1, 1);
 
         VentanaPrincipal->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(VentanaPrincipal);

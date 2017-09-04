@@ -40,7 +40,7 @@ void VentanaPrincipal::on_pushButtonCrearProducto_clicked()
         producto->setPrecio( ui->lineEditPrecio->text() );
         producto->setPresentacion( ui->lineEditPresentacion->text());
         producto->setComentario( ui->lineEditComentarios->text() );
-         producto->setStock( ui->lineEditStock->text() );
+        producto->setStock( ui->lineEditStock->text() );
 
         if ( !producto->verificarPropiedades() ){
             QMessageBox::information(this, "", "Producto creado");
