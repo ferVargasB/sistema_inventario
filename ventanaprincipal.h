@@ -57,15 +57,17 @@ private:
     void mostrarTablaProductoConsultas();
 
     //funciones relacionadas con la vista de venta
-    void mostrarProductosEnTabVenta();
-    void cargarListaDeProductos();
-    void agregarListaDeProductos();
 
     //Funciones relacionadas con el proceso de venta
     void seleccionarProducto(QString nombre);
     void agregarDatosAlaVenta();
     void agregarProductoAlaVenta(Producto producto);
     void iniciarModelosAlProcesoVenta();
+
+
+    //Actualizar Datos
+    void actualizarDatos();
+    void actualizarProductosEnElCombo();
 };
 
 #endif // VENTANAPRINCIPAL_H

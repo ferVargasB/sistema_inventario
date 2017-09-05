@@ -462,7 +462,7 @@ public:
 
         retranslateUi(VentanaPrincipal);
 
-        tabWidgetVenta->setCurrentIndex(0);
+        tabWidgetVenta->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(VentanaPrincipal);
