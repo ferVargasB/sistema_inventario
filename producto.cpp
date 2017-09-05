@@ -171,7 +171,7 @@ void Producto::setStock(QString value)
     bool ok = true;
     if ( !value.isEmpty() && !value.contains(QRegularExpression("([a-z]|[A-Z])"))){
         if ( value.toInt(&ok) <= 100000 && value.toInt(&ok) >= 0){
-            codigo = value.toInt(&ok);
+            stock = value.toInt(&ok);
             propiedadesValidas[7] = 0;
         } else
             propiedadesValidas[7] = 1;

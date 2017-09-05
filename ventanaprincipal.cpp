@@ -78,16 +78,17 @@ void VentanaPrincipal::mostrarTablaProducto()
 void VentanaPrincipal::insertarProducto()
 {
    QSqlQuery query(baseDatos);
-   query.prepare("INSERT INTO producto (nombre, codigo, marca, proveedor, precio, presentacion, comentarios)"
-                 "VALUES (:nombre, :codigo, :marca, :proveedor, :precio, :presentacion, :comentarios)");
+   query.prepare("INSERT INTO producto (codigo_id, nombre, marca, proveedor, precio, presentacion, stock, comentario)"
+                 "VALUES (:nombre, :codigo, :marca, :proveedor, :precio, :presentacion, :stock, :comentario)");
 
-   query.bindValue(0, producto->getNombre());
-   query.bindValue(1, producto->getCodigo());
+   query.bindValue(0, producto->getCodigo());
+   query.bindValue(1, producto->getNombre());
    query.bindValue(2, producto->getMarca() );
    query.bindValue(3, producto->getProveedor() );
    query.bindValue(4, producto->getPrecio() );
    query.bindValue(5, producto->getPresentacion() );
-   query.bindValue(6, producto->getComentario() );
+   query.bindValue(6, producto->getStock() );
+   query.bindValue(7, producto->getComentario() );
 
    if ( query.exec() )
        qDebug() << "Query exitosa";
