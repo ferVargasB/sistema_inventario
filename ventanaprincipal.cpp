@@ -18,9 +18,12 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     modeloDatos = new QSqlTableModel(this, baseDatos );
     iniciarModelosAlProcesoVenta();
     mostrarTablaProducto();
+    actualizarDatos();
 
-    connect(ui->pushButtonCrearProducto, &QPushButton::clicked,
-            actualizarDatos);
+    connect(ui->pushButtonCrearProducto, &QPushButton::released,
+            this, &VentanaPrincipal::actualizarDatos);
+    connect(ui->pushButtonCrearProducto, &QPushButton::released,
+            this, &VentanaPrincipal::mostrarTablaProducto);
 }
 
 VentanaPrincipal::~VentanaPrincipal()
@@ -159,21 +162,28 @@ void VentanaPrincipal::actualizarDatos()
 
 void VentanaPrincipal::actualizarProductosEnElCombo()
 {
-    QSqlQuery query(baseDatos);
-    query.exec("SELECT codigo_id,nombre,precio FROM producto");
-    while (query.next()) {
-        QString codigo = query.value(0).toString();
-        QString nombre = query.value(1).toString();
-        QString precio = query.value(2).toString();
-        Producto producto;
-        producto.setCodigo(codigo);
-        producto.setNombre(nombre);
-        producto.setPrecio(precio);
-        listaDeProducto.append(producto);
-      }
+    if ( ui->comboBoxListaProductos->count() != 0){
+        for (int i = ui->comboBoxListaProductos->currentIndex(); i < ui->comboBoxListaProductos->count(); i++){
+            ui->comboBoxListaProductos->removeItem(i);
+            listaDeProducto.remove(i);
+        }
+    } else {
+        QSqlQuery query(baseDatos);
+        query.exec("SELECT codigo_id,nombre,precio FROM producto");
+        while (query.next()) {
+            QString codigo = query.value(0).toString();
+            QString nombre = query.value(1).toString();
+            QString precio = query.value(2).toString();
+            Producto producto;
+            producto.setCodigo(codigo);
+            producto.setNombre(nombre);
+            producto.setPrecio(precio);
+            listaDeProducto.append(producto);
+          }
 
-    for (int i = 0; i < listaDeProducto.size(); i++){
-        ui->comboBoxListaProductos->addItem( listaDeProducto[i].getNombre() );
+        for (int i = 0; i < listaDeProducto.size(); i++){
+            ui->comboBoxListaProductos->addItem( listaDeProducto[i].getNombre() );
+        }
     }
 }
 
