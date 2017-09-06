@@ -112,7 +112,7 @@ public:
     {
         if (VentanaPrincipal->objectName().isEmpty())
             VentanaPrincipal->setObjectName(QStringLiteral("VentanaPrincipal"));
-        VentanaPrincipal->resize(979, 502);
+        VentanaPrincipal->resize(979, 511);
         centralWidget = new QWidget(VentanaPrincipal);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_2 = new QGridLayout(centralWidget);
@@ -462,7 +462,7 @@ public:
 
         retranslateUi(VentanaPrincipal);
 
-        tabWidgetVenta->setCurrentIndex(2);
+        tabWidgetVenta->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(VentanaPrincipal);

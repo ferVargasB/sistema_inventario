@@ -36,13 +36,19 @@ private:
     QSqlDatabase baseDatos;
     Producto *producto;
 
-    QVector <Producto> listaDeProducto;
+    // Objeto
+    QVector <Producto> listaDeProductos;
 
     //Propiedades de la ventana Venta
     QStandardItemModel *nombresSeleccionados;
     QStandardItemModel *codigosSeleccionados;
     QStandardItemModel *preciosSeleccionados;
 
+    //Funciones para establecer datos a los modelos
+    void mostrarDatosEnTablasDeProductos();
+
+    //Funcion para establecer valores iniciales al combo de producto
+    void iniciarComboConProductosDeBD();
 
 
     //funciones relacionadas con la base de datos

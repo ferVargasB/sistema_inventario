@@ -17,13 +17,8 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     producto = new Producto;
     modeloDatos = new QSqlTableModel(this, baseDatos );
     iniciarModelosAlProcesoVenta();
-    mostrarTablaProducto();
-    actualizarDatos();
-
-    connect(ui->pushButtonCrearProducto, &QPushButton::released,
-            this, &VentanaPrincipal::actualizarDatos);
-    connect(ui->pushButtonCrearProducto, &QPushButton::released,
-            this, &VentanaPrincipal::mostrarTablaProducto);
+    mostrarDatosEnTablasDeProductos();
+    iniciarComboConProductosDeBD();
 }
 
 VentanaPrincipal::~VentanaPrincipal()
@@ -51,6 +46,7 @@ void VentanaPrincipal::on_pushButtonCrearProducto_clicked()
             QMessageBox::information(this, "", "Producto creado");
             insertarProducto();
             insertarProveedor();
+            actualizarDatos();
         } else{
 
             QMessageBox::warning(this, "", "Datos incorrectos");
@@ -127,9 +123,9 @@ void VentanaPrincipal::mostrarTablaProductoConsultas()
 
 void VentanaPrincipal::seleccionarProducto(QString nombre)
 {
-    for (int i = 0; i < listaDeProducto.size(); i++){
-        if (listaDeProducto[i].getNombre() == nombre){
-            agregarProductoAlaVenta(listaDeProducto[i]);
+    for (int i = 0; i < listaDeProductos.size(); i++){
+        if (listaDeProductos[i].getNombre() == nombre){
+            agregarProductoAlaVenta(listaDeProductos[i]);
         }
     }
 }
@@ -158,33 +154,13 @@ void VentanaPrincipal::iniciarModelosAlProcesoVenta() //Funcion para iniciar los
 void VentanaPrincipal::actualizarDatos()
 {
     actualizarProductosEnElCombo();
+    mostrarTablaProducto();
+    //funcion para restablecer el apuntador producto
 }
 
 void VentanaPrincipal::actualizarProductosEnElCombo()
 {
-    if ( ui->comboBoxListaProductos->count() != 0){
-        for (int i = ui->comboBoxListaProductos->currentIndex(); i < ui->comboBoxListaProductos->count(); i++){
-            ui->comboBoxListaProductos->removeItem(i);
-            listaDeProducto.remove(i);
-        }
-    } else {
-        QSqlQuery query(baseDatos);
-        query.exec("SELECT codigo_id,nombre,precio FROM producto");
-        while (query.next()) {
-            QString codigo = query.value(0).toString();
-            QString nombre = query.value(1).toString();
-            QString precio = query.value(2).toString();
-            Producto producto;
-            producto.setCodigo(codigo);
-            producto.setNombre(nombre);
-            producto.setPrecio(precio);
-            listaDeProducto.append(producto);
-          }
-
-        for (int i = 0; i < listaDeProducto.size(); i++){
-            ui->comboBoxListaProductos->addItem( listaDeProducto[i].getNombre() );
-        }
-    }
+    ui->comboBoxListaProductos->addItem( producto->getNombre() );
 }
 
 void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg1)
@@ -205,4 +181,28 @@ void VentanaPrincipal::on_comboBoxListaProductos_activated(const QString &arg1)
 void VentanaPrincipal::on_pushButton_clicked()
 {
     QMessageBox::information(this,"Venta","Venta Realizada");
+}
+
+void VentanaPrincipal::mostrarDatosEnTablasDeProductos()
+{
+    mostrarTablaProducto();
+    mostrarTablaProductoConsultas();
+}
+
+void VentanaPrincipal::iniciarComboConProductosDeBD()
+{
+    QSqlQuery query(baseDatos);
+    query.exec("SELECT codigo_id, nombre, precio FROM producto");
+
+    while ( query.next() ) {
+        QString codigo = query.value(0).toString();
+        QString nombre = query.value(1).toString();
+        QString precio = query.value(2).toString();
+        Producto producto;
+        producto.setCodigo(codigo);
+        producto.setNombre(nombre);
+        producto.setPrecio(precio);
+        ui->comboBoxListaProductos->addItem(nombre);
+        listaDeProductos.append(producto);
+    }
 }
