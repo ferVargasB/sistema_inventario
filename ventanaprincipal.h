@@ -74,6 +74,7 @@ private:
     //Actualizar Datos
     void actualizarDatos();
     void actualizarProductosEnElCombo();
+    void actualizarDatosEnlaListaProducto();
 };
 
 #endif // VENTANAPRINCIPAL_H

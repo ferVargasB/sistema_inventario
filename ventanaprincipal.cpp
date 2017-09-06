@@ -163,6 +163,12 @@ void VentanaPrincipal::actualizarProductosEnElCombo()
     ui->comboBoxListaProductos->addItem( producto->getNombre() );
 }
 
+void VentanaPrincipal::actualizarDatosEnlaListaProducto()
+{
+    listaDeProductos.append(Producto(this->producto->getNombre(), this->producto->getCodigo(), " ", " ",
+                                     this->producto->getPrecio(), 0.0, " ", 0));
+}
+
 void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg1)
 {
     if ( arg1 == "detalle de venta")
@@ -195,14 +201,14 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
     query.exec("SELECT codigo_id, nombre, precio FROM producto");
 
     while ( query.next() ) {
+        bool ok = true;
         QString codigo = query.value(0).toString();
         QString nombre = query.value(1).toString();
         QString precio = query.value(2).toString();
-        Producto producto;
-        producto.setCodigo(codigo);
-        producto.setNombre(nombre);
-        producto.setPrecio(precio);
+        producto->setCodigo(codigo);
+        producto->setNombre(nombre);
+        producto->setPrecio(precio);
         ui->comboBoxListaProductos->addItem(nombre);
-        listaDeProductos.append(producto);
+        listaDeProductos.append(Producto(nombre, codigo.toInt(&ok)," ", " ", precio.toDouble(&ok), 0.0, " ", 0));
     }
 }
