@@ -281,54 +281,6 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
-          <width>417</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLabel" name="labelSeleccioneProducto">
-           <property name="text">
-            <string>Seleccione un producto para agregar a la venta</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBoxListaProductos"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
           <y>38</y>
           <width>935</width>
           <height>310</height>
@@ -449,6 +401,42 @@
           </layout>
          </item>
         </layout>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>10</y>
+          <width>60</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBoxListaProductos">
+        <property name="geometry">
+         <rect>
+          <x>323</x>
+          <y>10</y>
+          <width>104</width>
+          <height>26</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelSeleccioneProducto">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>12</y>
+          <width>287</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Seleccione un producto para agregar a la venta</string>
+        </property>
        </widget>
       </widget>
      </widget>
