@@ -30,6 +30,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lineEditCodigoBuscado_returnPressed();
+
 private:
     Ui::VentanaPrincipal *ui;
     QSqlTableModel *modeloDatos;

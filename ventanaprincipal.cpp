@@ -212,3 +212,8 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
         listaDeProductos.append(Producto(nombre, codigo.toInt(&ok)," ", " ", precio.toDouble(&ok), 0.0, " ", 0));
     }
 }
+
+void VentanaPrincipal::on_lineEditCodigoBuscado_returnPressed()
+{
+
+}
