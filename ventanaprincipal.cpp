@@ -145,6 +145,7 @@ void VentanaPrincipal::iniciarModelosAlProcesoVenta() //Funcion para iniciar los
     nombresSeleccionados = new QStandardItemModel(0,3,this);
     codigosSeleccionados = new QStandardItemModel(this);
     preciosSeleccionados = new QStandardItemModel(this);
+    CantidadDeProductos = new QStandardItemModel(this);
 
     ui->listViewNombreDeProductos->setModel(nombresSeleccionados);
     ui->listViewCodigos->setModel(codigosSeleccionados);
