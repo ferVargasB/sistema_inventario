@@ -46,7 +46,11 @@ private:
     QStandardItemModel *nombresSeleccionados;
     QStandardItemModel *codigosSeleccionados;
     QStandardItemModel *preciosSeleccionados;
+<<<<<<< HEAD
     QStandardItemModel *cantidadDeProductos;
+=======
+    QStandardItemModel *CantidadDeProductos;
+>>>>>>> cbadfa6ab3dbd24d117c55bb7b45d6a8a46a7421
 
     //Funciones para establecer datos a los modelos
     void mostrarDatosEnTablasDeProductos();
