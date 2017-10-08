@@ -37,6 +37,7 @@ private:
     QSqlTableModel *modeloDatos;
     QSqlDatabase baseDatos;
     Producto *producto;
+    double total;
 
     // Objeto
     QVector <Producto> listaDeProductos;
@@ -45,6 +46,7 @@ private:
     QStandardItemModel *nombresSeleccionados;
     QStandardItemModel *codigosSeleccionados;
     QStandardItemModel *preciosSeleccionados;
+    QStandardItemModel *cantidadDeProductos;
 
     //Funciones para establecer datos a los modelos
     void mostrarDatosEnTablasDeProductos();
@@ -72,11 +74,16 @@ private:
     void agregarProductoAlaVenta(Producto producto);
     void iniciarModelosAlProcesoVenta();
 
+    void marcarProducto(int codigo, QString nombre, double precio);
+
 
     //Actualizar Datos
     void actualizarDatos();
     void actualizarProductosEnElCombo();
     void actualizarDatosEnlaListaProducto();
+
+    //Funciones relacionadas con la marcacion de total
+    void agregarPrecio(double precio);
 };
 
 #endif // VENTANAPRINCIPAL_H

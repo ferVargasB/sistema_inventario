@@ -7,6 +7,10 @@
 QT       += core gui
 QT       += sql
 
+QMAKE_MAC_SDK = macosx10.11
+QMAKE_MAC_SDK = macosx10.9
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.13
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = SistemaDeInventarios

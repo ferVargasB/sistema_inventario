@@ -16,6 +16,7 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     crearConexionBD(); //Crear conexion a la bd
     producto = new Producto;
     modeloDatos = new QSqlTableModel(this, baseDatos );
+    total = 0;
     iniciarModelosAlProcesoVenta();
     mostrarDatosEnTablasDeProductos();
     iniciarComboConProductosDeBD();
@@ -73,7 +74,6 @@ void VentanaPrincipal::mostrarTablaProducto()
     modeloDatos->setTable("producto");
     modeloDatos->select();
     ui->tableViewProducto->setModel( modeloDatos );
-    ui->tableViewProductosParaVender->setModel( modeloDatos );
 }
 
 void VentanaPrincipal::insertarProducto()
@@ -118,15 +118,27 @@ void VentanaPrincipal::mostrarTablaProductoConsultas()
 {
     modeloDatos->setTable("producto");
     modeloDatos->select();
-    ui->tableViewConsultas->setModel( modeloDatos );
 }
 
 void VentanaPrincipal::seleccionarProducto(QString nombre)
 {
-    for (int i = 0; i < listaDeProductos.size(); i++){
+    /*for (int i = 0; i < listaDeProductos.size(); i++){
         if (listaDeProductos[i].getNombre() == nombre){
             agregarProductoAlaVenta(listaDeProductos[i]);
         }
+    }*/
+
+    QSqlQuery query(baseDatos);
+    query.prepare("SELECT codigo_id, nombre, precio FROM producto WHERE nombre = '"+nombre+"'");
+    query.bindValue(":nombre",nombre);
+    qDebug() << "SELECT codigo_id, nombre, precio FROM producto WHERE nombre = '"+nombre+"'";
+    query.exec();
+    bool ok = true;
+    while ( query.next() ){
+        int codigo = query.value(0).toInt(&ok);
+        QString nombreProducto = query.value(1).toString();
+        double precio = query.value(2).toDouble(&ok);
+        marcarProducto(codigo, nombreProducto, precio);
     }
 }
 
@@ -145,10 +157,19 @@ void VentanaPrincipal::iniciarModelosAlProcesoVenta() //Funcion para iniciar los
     nombresSeleccionados = new QStandardItemModel(0,3,this);
     codigosSeleccionados = new QStandardItemModel(this);
     preciosSeleccionados = new QStandardItemModel(this);
+    cantidadDeProductos = new QStandardItemModel(this);
 
     ui->listViewNombreDeProductos->setModel(nombresSeleccionados);
     ui->listViewCodigos->setModel(codigosSeleccionados);
     ui->listViewPrecio->setModel(preciosSeleccionados);
+}
+
+void VentanaPrincipal::marcarProducto(int codigo, QString nombre, double precio)
+{
+    nombresSeleccionados->appendRow(new QStandardItem(nombre));
+    codigosSeleccionados->appendRow(new QStandardItem(QString::number(codigo)));
+    preciosSeleccionados->appendRow(new QStandardItem(QString::number(precio)));
+    agregarPrecio(precio);
 }
 
 void VentanaPrincipal::actualizarDatos()
@@ -167,6 +188,12 @@ void VentanaPrincipal::actualizarDatosEnlaListaProducto()
 {
     listaDeProductos.append(Producto(this->producto->getNombre(), this->producto->getCodigo(), " ", " ",
                                      this->producto->getPrecio(), 0.0, " ", 0));
+}
+
+void VentanaPrincipal::agregarPrecio(double precio)
+{
+    total += precio;
+    ui->labelTotal->setText(QString::number(total));
 }
 
 void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg1)
