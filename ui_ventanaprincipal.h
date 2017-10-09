@@ -91,13 +91,12 @@ public:
     QLabel *Precio;
     QListView *listViewPrecio;
     QVBoxLayout *verticalLayout_8;
-    QLabel *label_4;
-    QListView *listViewCantidadDeArticulos;
     QVBoxLayout *totalYrealizarVenta;
     QHBoxLayout *labelsTotal;
     QLabel *labelMarcarTotal;
     QLabel *labelTotal;
-    QPushButton *pushButton;
+    QPushButton *pushButtonBorrarElemento;
+    QPushButton *pushButtonRealizarVenta;
     QFrame *frameSuperior;
     QWidget *widget1;
     QVBoxLayout *verticalLayout1;
@@ -388,17 +387,6 @@ public:
         verticalLayout_8 = new QVBoxLayout();
         verticalLayout_8->setSpacing(6);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        label_4 = new QLabel(widget);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_8->addWidget(label_4);
-
-        listViewCantidadDeArticulos = new QListView(widget);
-        listViewCantidadDeArticulos->setObjectName(QStringLiteral("listViewCantidadDeArticulos"));
-
-        verticalLayout_8->addWidget(listViewCantidadDeArticulos);
-
 
         horizontalLayout_4->addLayout(verticalLayout_8);
 
@@ -425,10 +413,15 @@ public:
 
         totalYrealizarVenta->addLayout(labelsTotal);
 
-        pushButton = new QPushButton(widget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButtonBorrarElemento = new QPushButton(widget);
+        pushButtonBorrarElemento->setObjectName(QStringLiteral("pushButtonBorrarElemento"));
 
-        totalYrealizarVenta->addWidget(pushButton);
+        totalYrealizarVenta->addWidget(pushButtonBorrarElemento);
+
+        pushButtonRealizarVenta = new QPushButton(widget);
+        pushButtonRealizarVenta->setObjectName(QStringLiteral("pushButtonRealizarVenta"));
+
+        totalYrealizarVenta->addWidget(pushButtonRealizarVenta);
 
 
         modelosTotalRealizarVenta->addLayout(totalYrealizarVenta);
@@ -526,10 +519,10 @@ public:
         labelProducto->setText(QApplication::translate("VentanaPrincipal", "Nombre", Q_NULLPTR));
         Codigo->setText(QApplication::translate("VentanaPrincipal", "Codigo", Q_NULLPTR));
         Precio->setText(QApplication::translate("VentanaPrincipal", "Precio", Q_NULLPTR));
-        label_4->setText(QApplication::translate("VentanaPrincipal", "Cantidad", Q_NULLPTR));
         labelMarcarTotal->setText(QApplication::translate("VentanaPrincipal", "Total:   ", Q_NULLPTR));
         labelTotal->setText(QApplication::translate("VentanaPrincipal", "0", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("VentanaPrincipal", "Realizar Venta", Q_NULLPTR));
+        pushButtonBorrarElemento->setText(QApplication::translate("VentanaPrincipal", "Borrar elemento", Q_NULLPTR));
+        pushButtonRealizarVenta->setText(QApplication::translate("VentanaPrincipal", "Realizar Venta", Q_NULLPTR));
         labelSeleccioneProducto->setText(QApplication::translate("VentanaPrincipal", "Seleccione un producto para agregar a la venta:", Q_NULLPTR));
         label_3->setText(QApplication::translate("VentanaPrincipal", "Ingrese el codigo del producto:", Q_NULLPTR));
         tabWidgetVenta->setTabText(tabWidgetVenta->indexOf(tabVenta), QApplication::translate("VentanaPrincipal", "Venta", Q_NULLPTR));

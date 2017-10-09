@@ -382,21 +382,7 @@
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_8">
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Cantidad</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListView" name="listViewCantidadDeArticulos"/>
-            </item>
-           </layout>
+           <layout class="QVBoxLayout" name="verticalLayout_8"/>
           </item>
          </layout>
         </item>
@@ -424,7 +410,14 @@
            </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pushButtonBorrarElemento">
+            <property name="text">
+             <string>Borrar elemento</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonRealizarVenta">
             <property name="text">
              <string>Realizar Venta</string>
             </property>

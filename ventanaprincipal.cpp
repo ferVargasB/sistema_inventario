@@ -20,6 +20,7 @@ VentanaPrincipal::VentanaPrincipal(QWidget *parent) :
     iniciarModelosAlProcesoVenta();
     mostrarDatosEnTablasDeProductos();
     iniciarComboConProductosDeBD();
+
 }
 
 VentanaPrincipal::~VentanaPrincipal()
@@ -122,12 +123,6 @@ void VentanaPrincipal::mostrarTablaProductoConsultas()
 
 void VentanaPrincipal::seleccionarProducto(QString nombre)
 {
-    /*for (int i = 0; i < listaDeProductos.size(); i++){
-        if (listaDeProductos[i].getNombre() == nombre){
-            agregarProductoAlaVenta(listaDeProductos[i]);
-        }
-    }*/
-
     QSqlQuery query(baseDatos);
     query.prepare("SELECT codigo_id, nombre, precio FROM producto WHERE nombre = '"+nombre+"'");
     query.bindValue(":nombre",nombre);
@@ -155,10 +150,8 @@ void VentanaPrincipal::agregarProductoAlaVenta(Producto producto)
 void VentanaPrincipal::iniciarModelosAlProcesoVenta() //Funcion para iniciar los modelos
 {
     nombresSeleccionados = new QStandardItemModel(0,3,this);
-    codigosSeleccionados = new QStandardItemModel(this);
-    preciosSeleccionados = new QStandardItemModel(this);
-    cantidadDeProductos = new QStandardItemModel(this);
-    CantidadDeProductos = new QStandardItemModel(this);
+    codigosSeleccionados = new QStandardItemModel(0,3,this);
+    preciosSeleccionados = new QStandardItemModel(0,3,this);
 
     ui->listViewNombreDeProductos->setModel(nombresSeleccionados);
     ui->listViewCodigos->setModel(codigosSeleccionados);
@@ -171,6 +164,17 @@ void VentanaPrincipal::marcarProducto(int codigo, QString nombre, double precio)
     codigosSeleccionados->appendRow(new QStandardItem(QString::number(codigo)));
     preciosSeleccionados->appendRow(new QStandardItem(QString::number(precio)));
     agregarPrecio(precio);
+}
+
+void VentanaPrincipal::removerProducto(const QModelIndex &index)
+{
+    int fila = index.row();
+    nombresSeleccionados->removeRow(index.row());
+    codigosSeleccionados->removeRow(fila);
+    preciosSeleccionados->removeRow(fila);
+    ui->listViewNombreDeProductos->update();
+    ui->listViewCodigos->update();
+    ui->listViewPrecio->update();
 }
 
 void VentanaPrincipal::actualizarDatos()
@@ -197,6 +201,21 @@ void VentanaPrincipal::agregarPrecio(double precio)
     ui->labelTotal->setText(QString::number(total));
 }
 
+void VentanaPrincipal::restarPrecio(QString nombreProducto)
+{
+    QSqlQuery query(baseDatos);
+    query.prepare("SELECT precio FROM producto WHERE nombre = '"+nombreProducto+"'");
+    query.bindValue(":nombre",nombreProducto);
+    qDebug() << "SELECT precio FROM producto WHERE nombre = '"+nombreProducto+"'";
+    query.exec();
+    bool ok = true;
+    while ( query.next() ){
+        double precio = query.value(0).toDouble(&ok);
+        total -= precio;
+        ui->labelTotal->setText(QString::number(total));
+    }
+}
+
 void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg1)
 {
     if ( arg1 == "detalle de venta")
@@ -210,11 +229,6 @@ void VentanaPrincipal::on_comboBoxTablasDisponibles_activated(const QString &arg
 void VentanaPrincipal::on_comboBoxListaProductos_activated(const QString &arg1)
 {
     seleccionarProducto( arg1 );
-}
-
-void VentanaPrincipal::on_pushButton_clicked()
-{
-    QMessageBox::information(this,"Venta","Venta Realizada");
 }
 
 void VentanaPrincipal::mostrarDatosEnTablasDeProductos()
@@ -239,9 +253,4 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
         ui->comboBoxListaProductos->addItem(nombre);
         listaDeProductos.append(Producto(nombre, codigo.toInt(&ok)," ", " ", precio.toDouble(&ok), 0.0, " ", 0));
     }
-}
-
-void VentanaPrincipal::on_lineEditCodigoBuscado_returnPressed()
-{
-
 }

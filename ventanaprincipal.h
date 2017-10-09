@@ -28,10 +28,6 @@ private slots:
 
     void on_comboBoxListaProductos_activated(const QString &arg1);
 
-    void on_pushButton_clicked();
-
-    void on_lineEditCodigoBuscado_returnPressed();
-
 private:
     Ui::VentanaPrincipal *ui;
     QSqlTableModel *modeloDatos;
@@ -46,8 +42,6 @@ private:
     QStandardItemModel *nombresSeleccionados;
     QStandardItemModel *codigosSeleccionados;
     QStandardItemModel *preciosSeleccionados;
-    QStandardItemModel *cantidadDeProductos;
-    QStandardItemModel *CantidadDeProductos;
 
     //Funciones para establecer datos a los modelos
     void mostrarDatosEnTablasDeProductos();
@@ -76,6 +70,7 @@ private:
     void iniciarModelosAlProcesoVenta();
 
     void marcarProducto(int codigo, QString nombre, double precio);
+    void removerProducto(const QModelIndex &index);
 
 
     //Actualizar Datos
@@ -85,6 +80,7 @@ private:
 
     //Funciones relacionadas con la marcacion de total
     void agregarPrecio(double precio);
+    void restarPrecio(QString nombreProducto);
 };
 
 #endif // VENTANAPRINCIPAL_H
