@@ -28,6 +28,8 @@ private slots:
 
     void on_comboBoxListaProductos_activated(const QString &arg1);
 
+    void on_listViewNombreDeProductos_pressed(const QModelIndex &index);
+
 private:
     Ui::VentanaPrincipal *ui;
     QSqlTableModel *modeloDatos;

@@ -254,3 +254,12 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
         listaDeProductos.append(Producto(nombre, codigo.toInt(&ok)," ", " ", precio.toDouble(&ok), 0.0, " ", 0));
     }
 }
+
+
+
+void VentanaPrincipal::on_listViewNombreDeProductos_pressed(const QModelIndex &index)
+{
+    bool ok = true;
+    restarPrecio(nombresSeleccionados->item(index.row())->text());
+    removerProducto(index);
+}

@@ -77,7 +77,7 @@ public:
     QTableView *tableViewConsultas;
     QWidget *tabVenta;
     QFrame *frameinferior;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *modelosTotalRealizarVenta;
     QHBoxLayout *horizontalLayout_4;
     QHBoxLayout *horizontalLayout;
@@ -98,7 +98,7 @@ public:
     QPushButton *pushButtonBorrarElemento;
     QPushButton *pushButtonRealizarVenta;
     QFrame *frameSuperior;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout1;
     QHBoxLayout *layoutComboBox;
     QLabel *labelSeleccioneProducto;
@@ -107,6 +107,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_3;
     QLineEdit *lineEditCodigoBuscado;
+    QLineEdit *lineEdit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -313,10 +314,10 @@ public:
         frameinferior->setGeometry(QRect(10, 120, 791, 351));
         frameinferior->setFrameShape(QFrame::Box);
         frameinferior->setFrameShadow(QFrame::Raised);
-        widget = new QWidget(frameinferior);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(0, 3, 791, 351));
-        modelosTotalRealizarVenta = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(frameinferior);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 3, 791, 351));
+        modelosTotalRealizarVenta = new QHBoxLayout(layoutWidget);
         modelosTotalRealizarVenta->setSpacing(6);
         modelosTotalRealizarVenta->setContentsMargins(11, 11, 11, 11);
         modelosTotalRealizarVenta->setObjectName(QStringLiteral("modelosTotalRealizarVenta"));
@@ -330,13 +331,13 @@ public:
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        labelProducto = new QLabel(widget);
+        labelProducto = new QLabel(layoutWidget);
         labelProducto->setObjectName(QStringLiteral("labelProducto"));
         labelProducto->setAlignment(Qt::AlignCenter);
 
         verticalLayout_6->addWidget(labelProducto);
 
-        listViewNombreDeProductos = new QListView(widget);
+        listViewNombreDeProductos = new QListView(layoutWidget);
         listViewNombreDeProductos->setObjectName(QStringLiteral("listViewNombreDeProductos"));
         listViewNombreDeProductos->setFrameShape(QFrame::StyledPanel);
         listViewNombreDeProductos->setFrameShadow(QFrame::Raised);
@@ -350,13 +351,13 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        Codigo = new QLabel(widget);
+        Codigo = new QLabel(layoutWidget);
         Codigo->setObjectName(QStringLiteral("Codigo"));
         Codigo->setAlignment(Qt::AlignCenter);
 
         verticalLayout_2->addWidget(Codigo);
 
-        listViewCodigos = new QListView(widget);
+        listViewCodigos = new QListView(layoutWidget);
         listViewCodigos->setObjectName(QStringLiteral("listViewCodigos"));
 
         verticalLayout_2->addWidget(listViewCodigos);
@@ -367,13 +368,13 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        Precio = new QLabel(widget);
+        Precio = new QLabel(layoutWidget);
         Precio->setObjectName(QStringLiteral("Precio"));
         Precio->setAlignment(Qt::AlignCenter);
 
         verticalLayout->addWidget(Precio);
 
-        listViewPrecio = new QListView(widget);
+        listViewPrecio = new QListView(layoutWidget);
         listViewPrecio->setObjectName(QStringLiteral("listViewPrecio"));
 
         verticalLayout->addWidget(listViewPrecio);
@@ -399,12 +400,12 @@ public:
         labelsTotal = new QHBoxLayout();
         labelsTotal->setSpacing(6);
         labelsTotal->setObjectName(QStringLiteral("labelsTotal"));
-        labelMarcarTotal = new QLabel(widget);
+        labelMarcarTotal = new QLabel(layoutWidget);
         labelMarcarTotal->setObjectName(QStringLiteral("labelMarcarTotal"));
 
         labelsTotal->addWidget(labelMarcarTotal);
 
-        labelTotal = new QLabel(widget);
+        labelTotal = new QLabel(layoutWidget);
         labelTotal->setObjectName(QStringLiteral("labelTotal"));
         labelTotal->setAlignment(Qt::AlignCenter);
 
@@ -413,12 +414,12 @@ public:
 
         totalYrealizarVenta->addLayout(labelsTotal);
 
-        pushButtonBorrarElemento = new QPushButton(widget);
+        pushButtonBorrarElemento = new QPushButton(layoutWidget);
         pushButtonBorrarElemento->setObjectName(QStringLiteral("pushButtonBorrarElemento"));
 
         totalYrealizarVenta->addWidget(pushButtonBorrarElemento);
 
-        pushButtonRealizarVenta = new QPushButton(widget);
+        pushButtonRealizarVenta = new QPushButton(layoutWidget);
         pushButtonRealizarVenta->setObjectName(QStringLiteral("pushButtonRealizarVenta"));
 
         totalYrealizarVenta->addWidget(pushButtonRealizarVenta);
@@ -431,10 +432,10 @@ public:
         frameSuperior->setGeometry(QRect(190, 30, 491, 80));
         frameSuperior->setFrameShape(QFrame::Box);
         frameSuperior->setFrameShadow(QFrame::Raised);
-        widget1 = new QWidget(frameSuperior);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(20, 10, 452, 61));
-        verticalLayout1 = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(frameSuperior);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(20, 10, 452, 61));
+        verticalLayout1 = new QVBoxLayout(layoutWidget1);
         verticalLayout1->setSpacing(6);
         verticalLayout1->setContentsMargins(11, 11, 11, 11);
         verticalLayout1->setObjectName(QStringLiteral("verticalLayout1"));
@@ -442,7 +443,7 @@ public:
         layoutComboBox = new QHBoxLayout();
         layoutComboBox->setSpacing(6);
         layoutComboBox->setObjectName(QStringLiteral("layoutComboBox"));
-        labelSeleccioneProducto = new QLabel(widget1);
+        labelSeleccioneProducto = new QLabel(layoutWidget1);
         labelSeleccioneProducto->setObjectName(QStringLiteral("labelSeleccioneProducto"));
 
         layoutComboBox->addWidget(labelSeleccioneProducto);
@@ -451,7 +452,7 @@ public:
 
         layoutComboBox->addItem(horizontalSpacer_3);
 
-        comboBoxListaProductos = new QComboBox(widget1);
+        comboBoxListaProductos = new QComboBox(layoutWidget1);
         comboBoxListaProductos->setObjectName(QStringLiteral("comboBoxListaProductos"));
 
         layoutComboBox->addWidget(comboBoxListaProductos);
@@ -462,12 +463,12 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        label_3 = new QLabel(widget1);
+        label_3 = new QLabel(layoutWidget1);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         horizontalLayout_5->addWidget(label_3);
 
-        lineEditCodigoBuscado = new QLineEdit(widget1);
+        lineEditCodigoBuscado = new QLineEdit(layoutWidget1);
         lineEditCodigoBuscado->setObjectName(QStringLiteral("lineEditCodigoBuscado"));
 
         horizontalLayout_5->addWidget(lineEditCodigoBuscado);
@@ -475,6 +476,9 @@ public:
 
         verticalLayout1->addLayout(horizontalLayout_5);
 
+        lineEdit = new QLineEdit(tabVenta);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(70, 10, 113, 21));
         tabWidgetVenta->addTab(tabVenta, QString());
         VentanaPrincipal->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(VentanaPrincipal);
