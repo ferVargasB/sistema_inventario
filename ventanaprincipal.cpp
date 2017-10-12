@@ -259,7 +259,6 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
 
 void VentanaPrincipal::on_listViewNombreDeProductos_pressed(const QModelIndex &index)
 {
-    bool ok = true;
     restarPrecio(nombresSeleccionados->item(index.row())->text());
     removerProducto(index);
 }
