@@ -30,12 +30,15 @@ private slots:
 
     void on_listViewNombreDeProductos_pressed(const QModelIndex &index);
 
+    void on_pushButtonRealizarVenta_clicked();
+
 private:
     Ui::VentanaPrincipal *ui;
     QSqlTableModel *modeloDatos;
     QSqlDatabase baseDatos;
     Producto *producto;
     double total;
+    QString resumen;
 
     // Objeto
     QVector <Producto> listaDeProductos;
@@ -74,11 +77,15 @@ private:
     void marcarProducto(int codigo, QString nombre, double precio);
     void removerProducto(const QModelIndex &index);
 
+    //Funciones relacionadas con el proceso de finalizar la venta
+    void realizarResumenProductos();
+    void finalizarVenta();
+    int mostrarMensajeFinalizar();
+
 
     //Actualizar Datos
     void actualizarDatos();
     void actualizarProductosEnElCombo();
-    void actualizarDatosEnlaListaProducto();
 
     //Funciones relacionadas con la marcacion de total
     void agregarPrecio(double precio);

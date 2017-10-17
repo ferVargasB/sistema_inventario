@@ -177,6 +177,36 @@ void VentanaPrincipal::removerProducto(const QModelIndex &index)
     ui->listViewPrecio->update();
 }
 
+void VentanaPrincipal::realizarResumenProductos()
+{
+    resumen = "Producto\t\tCantidad\n";
+    auto listaProducto = nombresSeleccionados->takeColumn(0);
+    auto listaPrecio = preciosSeleccionados->takeColumn(0);
+    for (int i = 0; i < listaProducto.size(); i++){
+        resumen += listaProducto[i]->text();
+        resumen += "\t\t";
+        resumen += listaPrecio[i]->text();
+        resumen += "\n";
+    }
+}
+
+void VentanaPrincipal::finalizarVenta()
+{
+
+}
+
+int VentanaPrincipal::mostrarMensajeFinalizar()
+{
+    QMessageBox msgBox;
+    msgBox.setText("¿Realizar venta por los siguientes articulos?");
+    msgBox.setInformativeText("Quiere finalizar la venta?");
+    msgBox.setDetailedText(resumen);
+    msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Save);
+    int ret = msgBox.exec();
+    return ret;
+}
+
 void VentanaPrincipal::actualizarDatos()
 {
     actualizarProductosEnElCombo();
@@ -187,12 +217,6 @@ void VentanaPrincipal::actualizarDatos()
 void VentanaPrincipal::actualizarProductosEnElCombo()
 {
     ui->comboBoxListaProductos->addItem( producto->getNombre() );
-}
-
-void VentanaPrincipal::actualizarDatosEnlaListaProducto()
-{
-    listaDeProductos.append(Producto(this->producto->getNombre(), this->producto->getCodigo(), " ", " ",
-                                     this->producto->getPrecio(), 0.0, " ", 0));
 }
 
 void VentanaPrincipal::agregarPrecio(double precio)
@@ -243,7 +267,6 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
     query.exec("SELECT codigo_id, nombre, precio FROM producto");
 
     while ( query.next() ) {
-        bool ok = true;
         QString codigo = query.value(0).toString();
         QString nombre = query.value(1).toString();
         QString precio = query.value(2).toString();
@@ -251,7 +274,6 @@ void VentanaPrincipal::iniciarComboConProductosDeBD()
         producto->setNombre(nombre);
         producto->setPrecio(precio);
         ui->comboBoxListaProductos->addItem(nombre);
-        listaDeProductos.append(Producto(nombre, codigo.toInt(&ok)," ", " ", precio.toDouble(&ok), 0.0, " ", 0));
     }
 }
 
@@ -261,4 +283,10 @@ void VentanaPrincipal::on_listViewNombreDeProductos_pressed(const QModelIndex &i
 {
     restarPrecio(nombresSeleccionados->item(index.row())->text());
     removerProducto(index);
+}
+
+void VentanaPrincipal::on_pushButtonRealizarVenta_clicked()
+{
+    realizarResumenProductos();
+    mostrarMensajeFinalizar();
 }
